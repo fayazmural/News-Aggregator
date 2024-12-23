@@ -48,6 +48,7 @@ export const fetchNewsFromNewsOrg = async (
   const params: Record<string, string> = {
     apiKey: NEWS_ORG_API_KEY,
     q: query,
+    sortBy:"publishedAt"
   };
 
   if (category) {

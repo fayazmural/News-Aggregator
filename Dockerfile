@@ -2,7 +2,8 @@
 FROM node:18-alpine AS build
 WORKDIR /app
 
-# Create .env file once
+# Create .env file once 
+# Exposing the env just for the sake of the case study and will use secure way to store the keys in real world
 RUN echo "VITE_NEWS_ORG_API_KEY=9a59cef3ba0340489ec59c466c1a425c" >> .env && \
     echo "VITE_NYT_API_KEY=HZv1uNihbE7POgFbccrCTyTF71XbS3rL" >> .env && \
     echo "VITE_GUARDIAN_API_KEY=0928d91d-c13a-4407-89f3-5aedf6de580e" >> .env && \
@@ -34,8 +35,8 @@ RUN npm install --frozen-lockfile
 COPY . ./
 
 # Expose port for the development server
-EXPOSE 3000
-CMD ["npm", "start"]
+EXPOSE 5173
+CMD ["npm","run","dev"]
 
 # Stage 3: Production environment
 FROM nginx:alpine AS production
